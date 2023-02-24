@@ -8,7 +8,7 @@ export const fetchRecipes = createAsyncThunk("recipes/fetchActivities", () => {
 })
 
 
-
+console.log('hello')
 const recipesSlice = createSlice({
   name: "recipes",
   initialState: {
