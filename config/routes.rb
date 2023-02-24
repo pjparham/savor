@@ -1,7 +1,6 @@
 Rails.application.routes.draw do
   resources :users, only: [:show, :create]
   resources :recipes
-  resources :lists
   get "/auth", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"
