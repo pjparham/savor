@@ -1,18 +1,18 @@
 import { createSlice } from "@reduxjs/toolkit";
 import { createAsyncThunk } from "@reduxjs/toolkit"
 
-export const fetchRecipes = createAsyncThunk("recipes/fetchActivities", () => {
+export const fetchRecipes = createAsyncThunk("recipes/fetchRecipes", () => {
   return fetch("/recipes")
   .then(response => response.json())
   .then(recipesArray => recipesArray)
 })
 
 
-console.log('hello')
 const recipesSlice = createSlice({
   name: "recipes",
   initialState: {
-    entities: [],
+    recipes: [],
+    isLoading: false
   },
   reducers: {
     // create reducer methods
@@ -28,9 +28,14 @@ const recipesSlice = createSlice({
       state.entities.splice(index, 1)
     }
   },
-  extraReducers: (builder) => {
+
+  extraReducers: builder => {
     builder.addCase(fetchRecipes.pending, (state) => {
       state.isLoading = true
+    })
+    builder.addCase(fetchRecipes.fulfilled, (state, action) => {
+      state.isLoading = false
+      state.recipes = action.payload
     })
   }
 });
