@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import './App.css';
 import { fetchRecipes } from './features/recipes/recipesSlice';
+import { Routes, Route } from 'react-router-dom';
+import Test from './Test';
+import RecipesContainer from './features/recipes/RecipesContainer';
 
 
 function App() {
@@ -30,6 +33,10 @@ function App() {
   return (
     <div className="App">
       <h1>hello world</h1>
+      <Routes>
+        <Route exact path='/test' element={<Test/>}/>
+        <Route exact path='/recipes' element={<RecipesContainer recipes={recipes}/>}/>
+      </Routes>
     </div>
   );
 }
