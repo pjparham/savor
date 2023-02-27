@@ -1,3 +1,5 @@
+require 'byebug'
+
 class RecipesController < ApplicationController
     before_action :set_recipe, only: [:show, :update, :destroy]
     # skip_before_action :authorized, only: :index
@@ -33,7 +35,10 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.permit(:name, :category)
+        params.require(:recipe).permit(:name, :category,
+             ingredients_attributes: [:name, :value, :measurement],
+             recipe_steps_attributes: [:value, :instruction]
+            )
     end
 
     def set_recipe

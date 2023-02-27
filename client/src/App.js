@@ -5,10 +5,11 @@ import { fetchRecipes } from './features/recipes/recipesSlice';
 import { Routes, Route } from 'react-router-dom';
 import Test from './Test';
 import RecipesContainer from './features/recipes/RecipesContainer';
-
+import { autoLogin } from './features/user/sessionsSlice';
 
 function App() {
   const dispatch = useDispatch()
+  const user = useSelector((state) => state.sessions.user)
   const recipes = useSelector((state) => state.recipes.recipes)
 
   const [currentUser, setCurrentUser] = useState()
@@ -26,6 +27,7 @@ function App() {
     //fetches activities and puts them in redux store
     useEffect(() => {
       dispatch(fetchRecipes())
+      dispatch(autoLogin())
     }, [dispatch])
 
     console.log(recipes)
