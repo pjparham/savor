@@ -5,33 +5,38 @@ import { fetchRecipes } from './features/recipes/recipesSlice';
 import { Routes, Route } from 'react-router-dom';
 import Test from './Test';
 import RecipesContainer from './features/recipes/RecipesContainer';
-import { autoLogin } from './features/user/sessionsSlice';
+import { login } from './features/user/sessionsSlice';
+import Login from './components/Login';
 
 function App() {
   const dispatch = useDispatch()
   const user = useSelector((state) => state.sessions.user)
   const recipes = useSelector((state) => state.recipes.recipes)
 
-  const [currentUser, setCurrentUser] = useState()
-
-    //auto login user if stored in session
-    // useEffect(()=> {
-    //   fetch('/auth')
-    //   .then(res => {
-    //     if(res.ok){
-    //       res.json().then(user=> setCurrentUser(user))
-    //     }
-    //   })
-    // }, [])
-
     //fetches activities and puts them in redux store
     useEffect(() => {
+      fetch('/auth')
+      .then(res => {
+        if(res.ok){
+          res.json().then(user => dispatch(login(user)))
+        }
+      })
       dispatch(fetchRecipes())
-      dispatch(autoLogin())
     }, [dispatch])
 
-    console.log(recipes)
-    
+//fetch inside component
+//dispatch login in component
+    console.log(user)
+
+    if (!user){
+      return (
+        <div className="App">
+          <Routes>
+            <Route exact path='/' element={<Login/>}/>
+          </Routes>
+        </div>
+      )
+    }
   return (
     <div className="App">
       <h1>hello world</h1>
