@@ -24,6 +24,11 @@ function RecipeForm() {
     setIngredients([...ingredients, { quantity: '', unit: '', name: '' }]);
   };
 
+  const handleRemoveIngredient = (index) => {
+    const newIngredients = ingredients.filter((ingredient, i) => i !== index);
+    setIngredients(newIngredients);
+  };
+
   const handleStepChange = (index, value) => {
     const newSteps = [...steps];
     newSteps[index] = value;
@@ -32,6 +37,11 @@ function RecipeForm() {
 
   const handleAddStep = () => {
     setSteps([...steps, '']);
+  };
+
+  const handleRemoveStep = (index) => {
+    const newSteps = steps.filter((step, i) => i !== index);
+    setSteps(newSteps);
   };
 
   const handleSubmit = (e) => {
@@ -69,21 +79,31 @@ function RecipeForm() {
         <ul>
           {ingredients.map((ingredient, index) => (
             <li key={index}>
-              <input
-                type="number"
-                value={ingredient.quantity}
-                onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
-              />
-              <input
-                type="text"
-                value={ingredient.unit}
-                onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
-              />
-              <input
-                type="text"
-                value={ingredient.name}
-                onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
-              />
+                <label>
+                    Quantity
+                    <input
+                    type="number"
+                    value={ingredient.quantity}
+                    onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
+                    />
+                </label>
+                <label>
+                    Unit
+                    <input
+                    type="text"
+                    value={ingredient.unit}
+                    onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
+                    />
+                </label>
+                <label>
+                    Name
+                    <input
+                    type="text"
+                    value={ingredient.name}
+                    onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
+                    />
+                </label>
+                <button type="button" onClick={() => handleRemoveIngredient(index)}>Remove Ingredient</button>
             </li>
           ))}
         </ul>
@@ -98,6 +118,7 @@ function RecipeForm() {
           {steps.map((step, index) => (
             <li key={index}>
               <textarea value={step} onChange={(e) => handleStepChange(index, e.target.value)} />
+              <button type="button" onClick={() => handleRemoveStep(index)}>Remove Step</button>
             </li>
           ))}
         </ol>
