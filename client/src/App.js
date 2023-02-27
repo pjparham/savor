@@ -7,6 +7,7 @@ import Test from './Test';
 import RecipesContainer from './features/recipes/RecipesContainer';
 import { login } from './features/user/sessionsSlice';
 import Login from './components/Login';
+import RecipeForm from './components/RecipeForm'
 
 function App() {
   const dispatch = useDispatch()
@@ -43,6 +44,7 @@ function App() {
       <Routes>
         <Route exact path='/test' element={<Test/>}/>
         <Route exact path='/recipes' element={<RecipesContainer recipes={recipes}/>}/>
+        <Route exact path='/~recipes/new' element={<RecipeForm/>}/>
       </Routes>
     </div>
   );
