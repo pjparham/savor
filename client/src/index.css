@@ -11,3 +11,111 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
 }
+
+.navbar {
+  width: 100%;
+  background: #ffffff;
+  height: 80px;
+  justify-content: space-between;
+}
+
+.nav-title {
+  float: left;
+  font-size: 60px;
+  color: black;
+  margin-bottom: -2px;
+  padding-bottom: 0;
+}
+
+
+
+.links {
+  float: right;
+  justify-content: space-between;
+  margin-top: 1.3rem;
+  font-size: 25px;
+}
+
+.mobile-links {
+  display: none;
+}
+
+
+.nav-add {
+  float: left;
+  margin-right: 1rem;
+  /* background: #e6f1f2; */
+  height: 35px;
+  width: 11rem;
+  border-radius: 17px;
+  font-weight: 600;
+  color: black;
+  transition: all 0.2s ease-in-out;
+}
+
+.nav-add:hover {
+  transition: all 0.2s ease-in-out;
+  /* color: white;
+  background: #5c787b; */
+  font-weight: 100;
+}
+
+.nav-profile {
+  float: right;
+  margin-right: 1rem;
+  color: black;
+}
+
+@media screen and (max-width: 620px){
+
+  .navbar{
+    height: 50px;
+  }
+
+  .nav-title {
+    font-size: 40px;
+  }
+
+  /* .nav-logo {
+    height: 3.2rem;
+    margin-right: .2rem;
+  } */
+
+
+  .links {
+    display: none;
+    /* font-size: 18px;
+    margin-top: 1rem; */
+  }
+
+  .mobile-links {
+    display: inline-block;
+    color: black;
+    float: right;
+    justify-content: space-between;
+    margin-top: .8rem;
+    margin-right: 1rem;
+    font-size: 25px;
+  }
+
+  .nav-add { 
+    width: 5rem;
+    font-weight: 600;
+    margin-right: .8rem;
+    padding-bottom: .4rem;
+    height: 28px;
+  }
+
+  .nav-profile {
+    margin-right: .5rem;
+  }
+
+  .filter-container {
+    margin-top: 3rem;
+  }
+
+  .filter-options {
+    margin-bottom: -2rem;
+  }
+
+}
