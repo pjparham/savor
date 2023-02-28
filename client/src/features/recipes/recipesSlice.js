@@ -19,7 +19,7 @@ const recipesSlice = createSlice({
     recipeAdded(state, action) {
       state.entities.push(action.payload);
     },
-    activityUpdated(state, action) {
+    recipeUpdated(state, action) {
         const index = state.recipes.findIndex(recipe => recipe.id === action.payload.id)
         state.activities[index] = action.payload
     },
@@ -41,6 +41,6 @@ const recipesSlice = createSlice({
 });
 
 // export the action creators
-export const { recipeAdded, recipeRemoved, activityUpdated } = recipesSlice.actions;
+export const { recipeAdded, recipeRemoved, recipeUpdated } = recipesSlice.actions;
 
 export default recipesSlice.reducer;

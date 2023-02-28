@@ -1,9 +1,9 @@
 class CreateIngredients < ActiveRecord::Migration[6.1]
   def change
     create_table :ingredients do |t|
-      t.integer :value
+      t.integer :quantity
       t.string :name
-      t.string :measurement
+      t.string :unit
       t.integer :recipe_id
 
       t.timestamps

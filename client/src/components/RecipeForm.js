@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'
+import { recipeAdded } from '../features/recipes/recipesSlice';
 
 function RecipeForm() {
+  const navigate = useNavigate()
+
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
   const [ingredients, setIngredients] = useState([{ quantity: '', unit: '', name: '' }]);
   const [steps, setSteps] = useState(['']);
+  const [errors, setErrors] = useState([])
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -44,16 +49,46 @@ function RecipeForm() {
     setSteps(newSteps);
   };
 
+  const formatSteps = steps.map((step, index) => {
+    return {value: index + 1, instruction: step}
+  })
+
+
   const handleSubmit = (e) => {
     e.preventDefault();
     const recipe = {
       name,
       category,
-      ingredients,
-      steps,
+      ingredients_attributes: ingredients,
+      recipe_steps_attributes: formatSteps,
     };
+    fetch(`/recipes`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(recipe)
+    })
+    .then((r) => {
+      if(r.ok){
+        r.json()
+        .then((newRecipe) => recipeAdded(recipe))
+        setName('')
+        setCategory('')
+        setIngredients([{ quantity: '', unit: '', name: '' }])
+        setSteps([''])
+        navigate('/')
+      } else{
+        r.json().then(e => setErrors(e.errors))
+      }
+    })
     console.log(recipe); // or dispatch an action to send the recipe data to your server or store
   };
+
+  // const [name, setName] = useState('');
+  // const [category, setCategory] = useState('');
+  // const [ingredients, setIngredients] = useState([{ quantity: '', unit: '', name: '' }]);
+  // const [steps, setSteps] = useState(['']);
 
   return (
     <form onSubmit={handleSubmit}>
@@ -71,6 +106,7 @@ function RecipeForm() {
           <option value="main course">Main Course</option>
           <option value="soup">Soup</option>
           <option value="salad">Salad</option>
+          <option value="side">Side</option>
         </select>
       </label>
       <br />

@@ -14,6 +14,7 @@ function App() {
   const user = useSelector((state) => state.sessions.user)
   const recipes = useSelector((state) => state.recipes.recipes)
 
+  console.log(recipes)
     //fetches activities and puts them in redux store
     useEffect(() => {
       fetch('/auth')
@@ -42,8 +43,9 @@ function App() {
     <div className="App">
       <h1>hello world</h1>
       <Routes>
+        <Route exact path='/' element={<RecipesContainer recipes={recipes}/>}/>
         <Route exact path='/test' element={<Test/>}/>
-        <Route exact path='/recipes' element={<RecipesContainer recipes={recipes}/>}/>
+
         <Route exact path='/~recipes/new' element={<RecipeForm/>}/>
       </Routes>
     </div>
