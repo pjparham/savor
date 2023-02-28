@@ -9,6 +9,7 @@ import { login } from './features/user/sessionsSlice';
 import Login from './components/Login';
 import RecipeForm from './components/RecipeForm'
 import Navbar from './components/Navbar';
+import Profile from './components/Profile'
 
 function App() {
   const dispatch = useDispatch()
@@ -27,9 +28,7 @@ function App() {
       dispatch(fetchRecipes())
     }, [dispatch])
 
-//fetch inside component
-//dispatch login in component
-    console.log(user)
+
 
     if (!user){
       return (
@@ -46,7 +45,7 @@ function App() {
       <Routes>
         <Route exact path='/' element={<RecipesContainer recipes={recipes}/>}/>
         <Route exact path='/test' element={<Test/>}/>
-
+        <Route exact path='/profile' element={<Profile user={user}/>}/>
         <Route exact path='/~recipes/new' element={<RecipeForm/>}/>
       </Routes>
     </div>
