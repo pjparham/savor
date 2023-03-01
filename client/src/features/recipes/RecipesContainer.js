@@ -1,9 +1,9 @@
 import React from 'react'
-import RecipeCard from './RecipeCard'
+import RecipeCard from '../../components/RecipeCard'
 
-export default function RecipesContainer({recipes}) {
+export default function RecipesContainer({recipes, user}) {
     const displayRecipes = recipes.map((recipe) => {
-        return <RecipeCard recipe={recipe} key={recipe.id}/>
+        return <RecipeCard user={user} recipe={recipe} key={recipe.id}/>
     })
   return (
     <div>{displayRecipes}</div>

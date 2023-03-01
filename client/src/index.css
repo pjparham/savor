@@ -66,6 +66,91 @@ code {
   color: black;
 }
 
+.login-container {
+  width: 300px;
+  margin: auto;
+  border-radius: 30px;
+  background: white;
+  padding: 20px;
+  margin-top: 1.5rem;
+  padding-bottom: 40px;
+  padding-top: 10px;
+}
+
+.login-input {
+  width: 220px;
+  padding: 8px;
+  border-top-left-radius: 28px;
+	border-bottom-left-radius: 28px;
+  border-top-right-radius: 28px;
+	border-bottom-right-radius: 28px;
+  /* border: grey; */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 20px;
+  padding-left: 20px;
+  background-color: #e3e3e3;
+  border: #e3e3e3;
+}
+
+.login-button-container {
+  width: 250px;
+  margin: auto;
+  font-size: 20px;
+  height: 40px;
+}
+
+.login-button {
+  width: 45%;
+  /* background: #5b787b; */
+  /* color: white; */
+  border-radius: 20px;
+  float: left;
+  height: 30px;
+  line-height: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+.login-signup-button {
+  width: 45%;
+  /* background: #e6f1f2; */
+  color: black;
+  border-radius: 20px;
+  float: right;
+  height: 30px;
+  line-height: 30px;
+  transition: all 0.2s ease-in-out;
+}
+
+.login-button:hover {
+  transition: all 0.2s ease-in-out;
+  /* color: #5b787b; */
+  font-weight: 600;
+  background: white;
+  /* border: 1px solid #5b787b; */
+}
+
+.login-signup-button:hover {
+  transition: all 0.2s ease-in-out;
+  color: #5b787b;
+  font-weight: 600;
+  background: white;
+  /* border: 1px solid #5b787b; */
+}
+
+.signup-button-container {
+  width: 250px;
+  margin: auto;
+  font-size: 20px;
+  height: 40px;
+}
+
+.signup-button {
+  float: none;
+  margin: auto;
+  font-size: 20px;
+}
+
 @media screen and (max-width: 620px){
 
   .navbar{

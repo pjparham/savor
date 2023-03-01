@@ -21,7 +21,7 @@ const recipesSlice = createSlice({
     },
     recipeUpdated(state, action) {
         const index = state.recipes.findIndex(recipe => recipe.id === action.payload.id)
-        state.activities[index] = action.payload
+        state.recipes[index] = action.payload
     },
     recipeRemoved(state, action){
       const index = state.entities.findIndex((recipe) => recipe.id === action.payload);

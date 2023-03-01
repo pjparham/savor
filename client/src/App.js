@@ -10,6 +10,8 @@ import Login from './components/Login';
 import RecipeForm from './components/RecipeForm'
 import Navbar from './components/Navbar';
 import Profile from './components/Profile'
+import Signup from './components/Signup';
+import RecipePage from './components/RecipePage';
 
 function App() {
   const dispatch = useDispatch()
@@ -33,8 +35,10 @@ function App() {
     if (!user){
       return (
         <div className="App">
+          <Navbar user={user}/>
           <Routes>
             <Route exact path='/' element={<Login/>}/>
+            <Route exact path='/signup' element={<Signup/>}/>
           </Routes>
         </div>
       )
@@ -43,10 +47,11 @@ function App() {
     <div className="App">
       <Navbar user={user}/>
       <Routes>
-        <Route exact path='/' element={<RecipesContainer recipes={recipes}/>}/>
+        <Route exact path='/' element={<RecipesContainer user={user} recipes={recipes}/>}/>
         <Route exact path='/test' element={<Test/>}/>
         <Route exact path='/profile' element={<Profile user={user}/>}/>
         <Route exact path='/~recipes/new' element={<RecipeForm/>}/>
+        <Route path='/~recipes/:id' element={<RecipePage recipes={recipes}/>}/>
       </Routes>
     </div>
   );

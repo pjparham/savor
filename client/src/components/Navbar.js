@@ -2,6 +2,8 @@ import React from 'react'
 import { NavLink } from 'react-router-dom'
 
 export default function Navbar( user ) {
+  const loggedIn = user.user !== null
+
   return (
     <div className="navbar">
         <NavLink to="/">
@@ -11,19 +13,19 @@ export default function Navbar( user ) {
           </div>
         </NavLink>
         <div className="links">
-          {user ? <NavLink to="/~recipes/new">
+          {loggedIn ? <NavLink to="/~recipes/new">
             <div className="nav-add">Add recipe</div>
           </NavLink> : null }
-          <NavLink to={user ? `/profile`: '/signup'}>
-            <div className="nav-profile">Profile</div>
+          <NavLink to={loggedIn ? `/profile`: '/signup'}>
+            <div className="nav-profile">{loggedIn ? `Profile`: 'Sign Up'}</div>
           </NavLink>
         </div>
         <div className='mobile-links'>
-          {user ? <NavLink to="/~recipes/new">
+          {loggedIn ? <NavLink to="/~recipes/new">
             <div className="nav-add">New</div>
           </NavLink> : null }
-          <NavLink to={user ? `/profile`: '/signup'}>
-            <div className="nav-profile">{user ? 'Me' : "Sign up"}</div>
+          <NavLink to={loggedIn ? `/profile`: '/signup'}>
+            <div className="nav-profile">{loggedIn ? 'Me' : "Sign up"}</div>
           </NavLink>
         </div>
     </div>
