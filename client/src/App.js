@@ -18,7 +18,7 @@ function App() {
   const user = useSelector((state) => state.sessions.user)
   const recipes = useSelector((state) => state.recipes.recipes)
 
-  console.log(recipes)
+
     //fetches activities and puts them in redux store
     useEffect(() => {
       fetch('/auth')
