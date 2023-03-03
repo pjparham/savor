@@ -22,7 +22,7 @@ export default function RecipePage({ recipes, user }) {
     const displaySteps = recipe && recipe.recipe_steps.map((s) => {
       return <li>{capitalizeFirstLetter(s.instruction)}</li>
     })
-
+console.log(recipe)
 
     if (!recipe){
       return (
@@ -33,6 +33,7 @@ export default function RecipePage({ recipes, user }) {
     }
   return (
     <div>
+      <div>{recipe.image ? <img src={recipe?.image} alt='recipe'/> : null}</div>
         <h1>{recipe.name}</h1>
         <p>Posted by: {recipe.user.username}</p>
         <div className='recipe-content-container'>

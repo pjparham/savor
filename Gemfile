@@ -49,3 +49,11 @@ group :test do
 end
 
 gem "active_model_serializers", "~> 0.10.12"
+
+# aws active storage gem
+gem 'aws-sdk-s3'
+gem "dotenv-rails", "~> 2.8"
+
+gem "image_processing", ">= 1.2"
+gem "jsonapi-serializer", "~> 2.2"
+gem 'figaro'

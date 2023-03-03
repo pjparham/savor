@@ -3,7 +3,7 @@ class RecipesController < ApplicationController
     skip_before_action :authorized, only: :index
 
     def index
-        render json: Recipe.all
+        render json: Recipe.all.with_attached_image
     end
 
     def show
@@ -33,7 +33,7 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :category,
+        params.require(:recipe).permit(:name, :category, :image,
              ingredients_attributes: [:name, :quantity, :unit],
              recipe_steps_attributes: [:value, :instruction]
             )

@@ -10,10 +10,15 @@ function RecipeForm() {
   const [ingredients, setIngredients] = useState([{ quantity: '', unit: '', name: '' }]);
   const [steps, setSteps] = useState(['']);
   const [errors, setErrors] = useState([])
+  const [image, setImage] = useState([])
 
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
+
+  const handleImageChange = (e) => {
+    setImage(e.target.value)
+  }
 
   const handleCategoryChange = (e) => {
     setCategory(e.target.value);
@@ -61,6 +66,7 @@ function RecipeForm() {
       category,
       ingredients_attributes: ingredients,
       recipe_steps_attributes: formatSteps,
+      image
     };
     fetch(`/recipes`, {
       method: "POST",
@@ -148,6 +154,7 @@ function RecipeForm() {
         </button>
       </label>
       <br />
+      <input type='file' onChange={handleImageChange}/>
       <label>
         Steps:
         <ol>
