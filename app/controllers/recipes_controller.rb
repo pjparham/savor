@@ -1,3 +1,4 @@
+require 'byebug'
 class RecipesController < ApplicationController
     before_action :set_recipe, only: [:show, :update, :destroy]
     skip_before_action :authorized, only: :index
@@ -11,6 +12,7 @@ class RecipesController < ApplicationController
     end
 
     def create
+        byebug
         user = User.find(session[:user_id])
         recipe = user.recipes.create!(recipe_params)
         render json: recipe
@@ -33,8 +35,8 @@ class RecipesController < ApplicationController
     private
 
     def recipe_params
-        params.require(:recipe).permit(:name, :category, :image,
-             ingredients_attributes: [:name, :quantity, :unit],
+        params.permit(:name, :category, :image,
+             { ingredients_attributes: [:name, :quantity, :unit] },
              recipe_steps_attributes: [:value, :instruction]
             )
     end

@@ -17,7 +17,7 @@ function RecipeForm() {
   };
 
   const handleImageChange = (e) => {
-    setImage(e.target.value)
+    setImage(e.target.files[0])
   }
 
   const handleCategoryChange = (e) => {
@@ -61,24 +61,28 @@ function RecipeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    const recipe = {
-      name,
-      category,
-      ingredients_attributes: ingredients,
-      recipe_steps_attributes: formatSteps,
-      image
-    };
+    const formData = new FormData()
+    formData.append("name", name);
+    formData.append("category", category) 
+    formData.append("ingredients_attributes", JSON.stringify(ingredients))
+    formData.append("recipe_steps_attributes", JSON.stringify(formatSteps)) 
+    formData.append("image", image) 
+    console.log(formData)
+    // const recipe = {
+    //   name,
+    //   category,
+    //   ingredients_attributes: ingredients,
+    //   recipe_steps_attributes: formatSteps,
+    //   image
+    // };
     fetch(`/recipes`, {
       method: "POST",
-      headers: {
-        "Content-Type": "application/json"
-      },
-      body: JSON.stringify(recipe)
+      body: formData
     })
     .then((r) => {
       if(r.ok){
         r.json()
-        .then((newRecipe) => recipeAdded(recipe))
+        .then((newRecipe) => recipeAdded(newRecipe))
         setName('')
         setCategory('')
         setIngredients([{ quantity: '', unit: '', name: '' }])
@@ -87,8 +91,7 @@ function RecipeForm() {
       } else{
         r.json().then(e => setErrors(e.errors))
       }
-    })
-    console.log(recipe); // or dispatch an action to send the recipe data to your server or store
+    }); // or dispatch an action to send the recipe data to your server or store
   };
 
   // const [name, setName] = useState('');
