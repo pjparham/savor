@@ -154,7 +154,11 @@ function RecipeForm() {
         </button>
       </label>
       <br />
-      <input type='file' onChange={handleImageChange}/>
+      <label>
+        Add image
+        <input type='file' onChange={handleImageChange}/>
+      </label>
+
       <label>
         Steps:
         <ol>
