@@ -24,8 +24,7 @@ const recipesSlice = createSlice({
         state.recipes[index] = action.payload
     },
     recipeRemoved(state, action){
-      const index = state.entities.findIndex((recipe) => recipe.id === action.payload);
-      state.entities.splice(index, 1)
+        state.recipes = state.recipes.filter(recipe => recipe.id !== action.payload)
     }
   },
 

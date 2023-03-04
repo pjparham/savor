@@ -24,8 +24,9 @@ class RecipesController < ApplicationController
     end
 
     def destroy
-        user = User.find(session[:user_id])
-        recipe = user.recipes.find_by(id: params[:id])
+        recipe = Recipe.find(params[:id])
+        # user = User.find(session[:user_id])
+        # recipe = user.recipes.find_by(id: params[:id])
         recipe.destroy
         head :no_content
     end

@@ -30,7 +30,7 @@ function App() {
       dispatch(fetchRecipes())
     }, [dispatch])
 
-
+console.log(recipes)
 
     if (!user){
       return (
