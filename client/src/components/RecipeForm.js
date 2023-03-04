@@ -61,20 +61,27 @@ function RecipeForm() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    const recipe = {
+      name,
+      category,
+      ingredients_attributes: ingredients,
+      recipe_steps_attributes: formatSteps,
+      image
+    };
     const formData = new FormData()
     formData.append("name", name);
     formData.append("category", category) 
-    formData.append("ingredients_attributes", JSON.stringify(ingredients))
-    formData.append("recipe_steps_attributes", JSON.stringify(formatSteps)) 
     formData.append("image", image) 
-    console.log(formData)
-    // const recipe = {
-    //   name,
-    //   category,
-    //   ingredients_attributes: ingredients,
-    //   recipe_steps_attributes: formatSteps,
-    //   image
-    // };
+    recipe.ingredients_attributes.forEach((ingredient, index) => {
+      formData.append(`ingredients_attributes[${index}][quantity]`, ingredient.quantity);
+      formData.append(`ingredients_attributes[${index}][unit]`, ingredient.unit);
+      formData.append(`ingredients_attributes[${index}][name]`, ingredient.name);
+    })
+    recipe.recipe_steps_attributes.forEach((step, index) => {
+      formData.append(`recipe_steps_attributes[${index}][value]`, step.value);
+      formData.append(`recipe_steps_attributes[${index}][instruction]`, step.instruction);
+    })
+
     fetch(`/recipes`, {
       method: "POST",
       body: formData
@@ -93,11 +100,6 @@ function RecipeForm() {
       }
     }); // or dispatch an action to send the recipe data to your server or store
   };
-
-  // const [name, setName] = useState('');
-  // const [category, setCategory] = useState('');
-  // const [ingredients, setIngredients] = useState([{ quantity: '', unit: '', name: '' }]);
-  // const [steps, setSteps] = useState(['']);
 
   return (
     <form onSubmit={handleSubmit}>
