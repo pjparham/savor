@@ -10,7 +10,7 @@ export default function RecipePage({ recipes, user }) {
 
     const displayIngredients = recipe && recipe.ingredients.map((i) => {
       let unit = i.unit
-      if (i.quantity > 1){
+      if (eval(i.quantity) > 1 && unit.length > 0 && unit.at(-1) !== 's'){
         unit += 's'
       }
       return <li>{i.quantity} {unit} {i.name}</li>
@@ -22,7 +22,6 @@ export default function RecipePage({ recipes, user }) {
     const displaySteps = recipe && recipe.recipe_steps.map((s) => {
       return <li>{capitalizeFirstLetter(s.instruction)}</li>
     })
-console.log(recipe)
 
     if (!recipe){
       return (

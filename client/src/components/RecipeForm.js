@@ -57,7 +57,7 @@ function RecipeForm() {
   const formatSteps = steps.map((step, index) => {
     return {value: index + 1, instruction: step}
   })
-
+console.log(image.length === undefined)
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -69,9 +69,11 @@ function RecipeForm() {
       image
     };
     const formData = new FormData()
+    if(image.length === undefined){
+      formData.append("image", image)
+    }
     formData.append("name", name);
     formData.append("category", category) 
-    formData.append("image", image) 
     recipe.ingredients_attributes.forEach((ingredient, index) => {
       formData.append(`ingredients_attributes[${index}][quantity]`, ingredient.quantity);
       formData.append(`ingredients_attributes[${index}][unit]`, ingredient.unit);
@@ -129,7 +131,7 @@ function RecipeForm() {
                 <label>
                     Quantity
                     <input
-                    type="number"
+                    type="text"
                     value={ingredient.quantity}
                     onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
                     />
