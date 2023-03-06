@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create]
   resources :recipes
   resources :favorites, only: [:destroy, :create]
-  resources :recipe_comments, only: [:create]
+  resources :recipe_comments, only: [:create, :destroy]
   get "/auth", to: "users#show"
   post "/login", to: "sessions#create"
   delete "/logout", to: "sessions#destroy"

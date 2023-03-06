@@ -6,11 +6,6 @@ import { recipeUpdated } from '../features/recipes/recipesSlice'
 export default function Comments({ recipe, user }) {
     const dispatch = useDispatch()
     const [comment, setComment] = useState("")
-    console.log(recipe.recipe_comments)
-
-    const displayComments = recipe && recipe.recipe_comments.map((c) => {
-        return <Comment comment={c} user={user} key={c.id}/>
-    })
 
     function onSubmit(e){
         e.preventDefault()
@@ -29,6 +24,25 @@ export default function Comments({ recipe, user }) {
         .then((updatedRecipe) => dispatch(recipeUpdated(updatedRecipe)))
         setComment("")
     }
+
+    function handleDelete(deletedComment){
+        fetch(`/recipe_comments/${deletedComment.id}`, {
+            method: "DELETE",
+        })
+        .then((r) => {
+            if(r.ok){
+                r.json()
+                .then((updatedRecipe) => dispatch(recipeUpdated(updatedRecipe)))
+            }
+            else{
+                alert('Database connection unstable, unable to process action')
+            }
+        })
+    }
+
+    const displayComments = recipe && recipe.recipe_comments.map((c) => {
+        return <Comment handleDelete={handleDelete} comment={c} user={user} key={c.id}/>
+    })
 
   return (
     <div className="comments-container">
