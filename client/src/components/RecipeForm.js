@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom'
 import { recipeAdded } from '../features/recipes/recipesSlice';
+import { useDispatch } from "react-redux"
 
 function RecipeForm() {
+  const dispatch = useDispatch()
   const navigate = useNavigate()
 
   const [name, setName] = useState('');
@@ -91,7 +93,7 @@ console.log(image.length === undefined)
     .then((r) => {
       if(r.ok){
         r.json()
-        .then((newRecipe) => recipeAdded(newRecipe))
+        .then((newRecipe) => dispatch(recipeAdded(newRecipe)))
         setName('')
         setCategory('')
         setIngredients([{ quantity: '', unit: '', name: '' }])

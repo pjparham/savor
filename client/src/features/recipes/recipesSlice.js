@@ -17,7 +17,8 @@ const recipesSlice = createSlice({
   reducers: {
     // create reducer methods
     recipeAdded(state, action) {
-      state.entities.push(action.payload);
+      state.recipes = [...state.recipes, action.payload];
+      // state.recipes.push(action.payload);
     },
     recipeUpdated(state, action) {
         const index = state.recipes.findIndex(recipe => recipe.id === action.payload.id)

@@ -13,14 +13,14 @@ export default function RecipePage({ recipes, user }) {
       if (eval(i.quantity) > 1 && unit.length > 0 && unit.at(-1) !== 's'){
         unit += 's'
       }
-      return <li>{i.quantity} {unit} {i.name}</li>
+      return <li key={i.id}>{i.quantity} {unit} {i.name}</li>
     })
 
     function capitalizeFirstLetter(string) {
       return string.charAt(0).toUpperCase() + string.slice(1);
   }
     const displaySteps = recipe && recipe.recipe_steps.map((s) => {
-      return <li>{capitalizeFirstLetter(s.instruction)}</li>
+      return <li key={s.id}>{capitalizeFirstLetter(s.instruction)}</li>
     })
 
     if (!recipe){
