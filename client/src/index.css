@@ -196,6 +196,55 @@ code {
 }
 
 /* styling for cards and container on homepage above */
+/* styling for recipe page below*/
+.recipe-page{
+  padding-left: 7rem;
+}
+
+.recipe-page-top-left {
+  width: 50%;
+  float: left;
+  text-align: left;
+}
+
+.recipe-page-title{
+  font-size: 32px;
+  font-weight: 600;
+}
+
+.recipe-page-author{
+  font-size: 14px;
+}
+
+.recipe-page-top-right {
+  width: 50%;
+  float: right;
+  text-align: left;
+}
+
+.recipe-ingredients-title {
+  text-align: left;
+  margin-left: 3rem;
+}
+
+.recipe-page-middle{
+  text-align: left;
+}
+
+.recipe-steps-container {
+  display: inline-block;
+  text-align: left;
+}
+
+.recipe-steps-container li {
+  margin-top: 1rem;
+}
+
+
+
+
+
+/*styling for recipe page above*/
 
 .signup-button-container {
   width: 250px;

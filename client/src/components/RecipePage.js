@@ -13,7 +13,7 @@ export default function RecipePage({ recipes, user }) {
       if (eval(i.quantity) > 1 && unit.length > 0 && unit.at(-1) !== 's'){
         unit += 's'
       }
-      return <li key={i.id}>{i.quantity} {unit} {i.name}</li>
+      return <p key={i.id}><i className="fa-regular fa-square"></i> {i.quantity} {unit} {i.name}</p>
     })
 
     function capitalizeFirstLetter(string) {
@@ -22,7 +22,7 @@ export default function RecipePage({ recipes, user }) {
     const displaySteps = recipe && recipe.recipe_steps.map((s) => {
       return <li key={s.id}>{capitalizeFirstLetter(s.instruction)}</li>
     })
-console.log(recipe)
+
     if (!recipe){
       return (
         <div>
@@ -31,30 +31,32 @@ console.log(recipe)
       )
     }
   return (
-    <div>
-      <div>{recipe.image ? <img src={recipe?.image} alt='recipe'/> : null}</div>
-        <h1>{recipe.name}</h1>
-        <p>Posted by: {recipe.user.username}</p>
-        <div className='recipe-content-container'>
-          <div className='recipe-content-left'>
-            <div className='recipe-ingredients-container'>
-              <h3>Ingredients</h3>
-              <ul>
-                {displayIngredients}
-              </ul>
-            </div>
-          </div>
-          <div className='recipe-content-right'>
-            <div className='recipe-steps-container'>
-              <h3>Preperation</h3>
-              <ol>
-                {displaySteps}
-              </ol>
-            </div>
-          </div>
+    <div className='recipe-page'>
+      <div className='recipe-page-top'>
+        <div className='recipe-page-top-left'>
+          <div className='recipe-page-title'>{recipe.name}  </div>
+          <div className='recipe-page-author'>By: {recipe.user.username}</div>
+          {recipe.image ? <img src={recipe?.image} alt='recipe'/> : null}
         </div>
-        <RecipeFavorites user={user} recipe={recipe}/>
-        <Comments user={user} recipe={recipe}/>
+        <div className='recipe-page-top-right'>
+        <div className='recipe-ingredients-container'>
+              <h3 className='recipe-ingredients-title'>Ingredients</h3>
+              <div>
+                {displayIngredients}
+              </div>
+            </div>
+        </div>
+      </div>
+      <div className='recipe-page-middle'>
+        <div className='recipe-steps-container'>
+          <h3>Preperation</h3>
+          <ol>
+            {displaySteps}
+          </ol>
+        </div>
+      </div>
+    <RecipeFavorites user={user} recipe={recipe}/>
+    <Comments user={user} recipe={recipe}/>
     </div>
   )
 }
