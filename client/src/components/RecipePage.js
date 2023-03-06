@@ -22,7 +22,7 @@ export default function RecipePage({ recipes, user }) {
     const displaySteps = recipe && recipe.recipe_steps.map((s) => {
       return <li key={s.id}>{capitalizeFirstLetter(s.instruction)}</li>
     })
-
+console.log(recipe)
     if (!recipe){
       return (
         <div>

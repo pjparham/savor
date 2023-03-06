@@ -1,7 +1,7 @@
 import React from 'react'
-import RecipeCard from '../../components/RecipeCard'
+import RecipeCard from './RecipeCard'
 import { useDispatch } from "react-redux"
-import { recipeRemoved } from './recipesSlice'
+import { recipeRemoved } from '../features/recipes/recipesSlice'
 
 export default function RecipesContainer({recipes, user}) {
   const dispatch = useDispatch()
@@ -25,6 +25,6 @@ export default function RecipesContainer({recipes, user}) {
 
     
   return (
-    <div>{displayRecipes}</div>
+    <div className='recipes-container'>{displayRecipes}</div>
   )
 }

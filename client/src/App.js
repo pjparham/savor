@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from "react-redux"
 import './App.css';
-import { fetchRecipes } from './features/recipes/recipesSlice';
+import { fetchRecipes, recipeRemoved } from './features/recipes/recipesSlice';
 import { Routes, Route } from 'react-router-dom';
 import Test from './Test';
-import RecipesContainer from './features/recipes/RecipesContainer';
+import RecipesContainer from './components/RecipesContainer';
 import { login } from './features/user/sessionsSlice';
 import Login from './components/Login';
 import RecipeForm from './components/RecipeForm'
@@ -12,6 +12,7 @@ import Navbar from './components/Navbar';
 import Profile from './components/Profile'
 import Signup from './components/Signup';
 import RecipePage from './components/RecipePage';
+
 
 function App() {
   const dispatch = useDispatch()
@@ -30,7 +31,16 @@ function App() {
       dispatch(fetchRecipes())
     }, [dispatch])
 
-console.log(recipes)
+    function handleDelete(recipe){
+      fetch(`/recipes/${recipe.id}`, {
+        method: "DELETE",
+      })
+      .then((r) => {
+        if(r.ok){
+          dispatch(recipeRemoved(recipe.id))
+        }
+      })
+    }
 
     if (!user){
       return (
@@ -51,7 +61,7 @@ console.log(recipes)
         <Route exact path='/test' element={<Test/>}/>
         <Route exact path='/profile' element={<Profile user={user}/>}/>
         <Route exact path='/~recipes/new' element={<RecipeForm/>}/>
-        <Route path='/~recipes/:id' element={<RecipePage user={user} recipes={recipes}/>}/>
+        <Route path='/~recipes/:id' element={<RecipePage handleDelete={handleDelete} user={user} recipes={recipes}/>}/>
       </Routes>
     </div>
   );

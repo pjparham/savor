@@ -32,8 +32,8 @@ export default function RecipeFavorites({ recipe, user }) {
 
   return (
     <div onClick={handleLike} className='card-favorite'>
-        {liked ? <i className="fa-solid fa-heart"></i> :  <i className="fa-regular fa-heart"></i>} 
-        {" "}{recipe.favorites.length === 1 ? (recipe.favorites.length) + " Favorite" : (recipe.favorites.length) + " Favorites"}
+        {liked ? <i className="fa-solid fa-bookmark"></i> :  <i className="fa-regular fa-bookmark"></i>}{" "}{recipe.favorites.length}
+        {/* {" "}{recipe.favorites.length === 1 ? (recipe.favorites.length) + " Save" : (recipe.favorites.length) + " Saves"} */}
     </div>  
   )
 }

@@ -138,6 +138,65 @@ code {
   /* border: 1px solid #5b787b; */
 }
 
+/* styling for cards and container on homepage below */
+
+.recipes-container {
+  margin: auto;
+  width: 70%;
+}
+
+.recipe-card {
+  border-radius: 10px;
+  padding-bottom: 2rem;
+  margin-bottom: 1rem;
+  border: 1px solid #ebebeb;
+  height: 8rem;
+}
+
+.card-title{
+  font-size: 26px;
+  font-weight: bold;
+}
+.card-author{
+  font-size: 12px;
+}
+
+.card-favorites{
+  float: right;
+  margin: 4px;
+}
+
+.card-link {
+  text-decoration: none;
+  color: black;
+}
+
+.card-left {
+  width: 10rem;
+  float: left;
+  margin-right: 1rem;
+}
+
+.card-right {
+  display: inline;
+  text-align: left;
+}
+
+.card-image {
+  margin-top: .5rem;
+  height: 9rem;
+  width: 9rem;
+  object-fit: cover;
+}
+
+.card-image-icon {
+  margin-top: .5rem;
+  font-size: 9rem;
+  color: darkslategray;
+}
+
+/* styling for cards and container on homepage above */
+
 .signup-button-container {
   width: 250px;
   margin: auto;

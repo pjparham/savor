@@ -59,7 +59,6 @@ function RecipeForm() {
   const formatSteps = steps.map((step, index) => {
     return {value: index + 1, instruction: step}
   })
-console.log(image.length === undefined)
 
   const handleSubmit = (e) => {
     e.preventDefault();
