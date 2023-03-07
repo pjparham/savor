@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom'
 import RecipeFavorites from './RecipeFavorites'
 import Comments from './Comments'
 import RecipeForm from './RecipeForm'
+import { useNavigate } from 'react-router-dom'
 
 export default function RecipePage({ recipes, user, handleDelete }) {
     const [edit, setEdit] = useState(false)
     const params = useParams()
+    const navigate = useNavigate()
 
     let recipe = recipes.find(recipe => recipe.id === parseInt(params.id))
     const isCurrentUser = recipe.user.id === user.id
@@ -29,6 +31,7 @@ export default function RecipePage({ recipes, user, handleDelete }) {
 
     function handleDeleteClick(){
       handleDelete(recipe)
+      navigate('/')
     }
     console.log(recipe)
 
