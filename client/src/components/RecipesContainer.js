@@ -1,10 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import RecipeCard from './RecipeCard'
 import { useDispatch } from "react-redux"
 import { recipeRemoved } from '../features/recipes/recipesSlice'
+import RecipeFilter from './RecipeFilter'
 
 export default function RecipesContainer({recipes, user}) {
   const dispatch = useDispatch()
+  const [category, setCategory] = useState('all')
   
 
     function handleDelete(recipe){
@@ -18,13 +20,44 @@ export default function RecipesContainer({recipes, user}) {
       })
     }
 
-    let displayRecipes = recipes && recipes.map((recipe) => {
+    let sortedRecipes = recipes && [...recipes].filter((recipe) =>{
+      switch(category){
+        case 'all':
+          return recipe;
+        case 'dessert':
+          return recipe.category === 'dessert';
+        case 'appetizer':
+          return recipe.category === 'appetizer';
+        case 'main course':
+          return recipe.category === 'main course';
+        case 'soup':
+          return recipe.category === 'soup';
+        case 'salad':
+          return recipe.category === 'salad';
+        case 'side':
+          return recipe.category === 'side';
+        case 'other':
+          return recipe.category === 'other';
+        default:
+          return recipe;
+      }
+    })
+
+    let displayRecipes = recipes && sortedRecipes.map((recipe) => {
       return <RecipeCard handleDelete={handleDelete} user={user} recipe={recipe} key={recipe.id}/>
   })
 
 
+  function handleFilter(e){
+    setCategory(e.target.title)
+  }
+
     
   return (
-    <div className='recipes-container'>{displayRecipes}</div>
+    <>
+      <RecipeFilter handleFilter={handleFilter}/>
+      <div className='recipes-container'>{displayRecipes}</div>
+    </>
+    
   )
 }

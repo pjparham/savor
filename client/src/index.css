@@ -14,7 +14,8 @@ code {
 
 .navbar {
   width: 100%;
-  background: #ffffff;
+  background: #1f1f1f;
+  color: white;
   height: 80px;
   justify-content: space-between;
 }
@@ -22,7 +23,7 @@ code {
 .nav-title {
   float: left;
   font-size: 60px;
-  color: black;
+  color: white;
   margin-bottom: -2px;
   padding-bottom: 0;
 }
@@ -49,7 +50,7 @@ code {
   width: 11rem;
   border-radius: 17px;
   font-weight: 600;
-  color: black;
+  color: white;
   transition: all 0.2s ease-in-out;
 }
 
@@ -63,7 +64,7 @@ code {
 .nav-profile {
   float: right;
   margin-right: 1rem;
-  color: black;
+  color: white;
 }
 
 .login-container {
@@ -140,9 +141,59 @@ code {
 
 /* styling for cards and container on homepage below */
 
+.dropbtn {
+  background-color: #1f1f1f;
+  color: white;
+  /* padding: 16px; */
+  font-size: 16px;
+  border: none;
+  cursor: pointer;
+  border-radius: 10px;
+  width: 4rem;
+  height: 2.3rem;
+  border: 1px solid #5b787b;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+  float: left;
+  margin-left: 2rem;
+  margin-top: 1rem;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f9f9f9;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+  margin-right: 2rem;
+}
+
+.dropdown-content div {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #f1f1f1}
+
+.dropdown:hover .dropdown-content {
+  display: block;
+}
+
+.dropdown:hover .dropbtn {
+  background-color: white;
+  color: black;
+}
+
 .recipes-container {
   margin: auto;
   width: 70%;
+  margin-top: 4rem;
 }
 
 .recipe-card {

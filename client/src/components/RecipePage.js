@@ -3,10 +3,12 @@ import { useParams } from 'react-router-dom'
 import RecipeFavorites from './RecipeFavorites'
 import Comments from './Comments'
 
-export default function RecipePage({ recipes, user }) {
+export default function RecipePage({ recipes, user, handleDelete }) {
     const params = useParams()
 
     let recipe = recipes.find(recipe => recipe.id === parseInt(params.id))
+    const isCurrentUser = recipe.user.id === user.id
+
 
     const displayIngredients = recipe && recipe.ingredients.map((i) => {
       let unit = i.unit
@@ -23,6 +25,10 @@ export default function RecipePage({ recipes, user }) {
       return <li key={s.id}>{capitalizeFirstLetter(s.instruction)}</li>
     })
 
+    function handleDeleteClick(){
+      handleDelete(recipe)
+    }
+
     if (!recipe){
       return (
         <div>
@@ -35,7 +41,7 @@ export default function RecipePage({ recipes, user }) {
       <div className='recipe-page-top'>
         <div className='recipe-page-top-left'>
           <div className='recipe-page-title'>{recipe.name}  </div>
-          <div className='recipe-page-author'>By: {recipe.user.username}</div>
+          <div className='recipe-page-author'>By: {recipe.user.username}{isCurrentUser ? <span  className='recipe-page-delete' onClick={handleDeleteClick}> || <u>Delete Recipe</u></span> : null}</div>
           {recipe.image ? <img src={recipe?.image} alt='recipe'/> : null}
         </div>
         <div className='recipe-page-top-right'>
@@ -55,7 +61,7 @@ export default function RecipePage({ recipes, user }) {
           </ol>
         </div>
       </div>
-    <RecipeFavorites user={user} recipe={recipe}/>
+    <RecipeFavorites isPage={true} user={user} recipe={recipe}/>
     <Comments user={user} recipe={recipe}/>
     </div>
   )

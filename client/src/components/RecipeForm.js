@@ -121,6 +121,7 @@ function RecipeForm() {
           <option value="soup">Soup</option>
           <option value="salad">Salad</option>
           <option value="side">Side</option>
+          <option value="other">Other</option>
         </select>
       </label>
       <br />

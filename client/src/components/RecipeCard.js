@@ -23,7 +23,7 @@ export default function RecipeCard({recipe, user, handleDelete}) {
         </div>
       </div>
       <div className='card-right'>
-      <div className='card-favorites'><RecipeFavorites recipe={recipe} user={user}/></div>
+      <div className='card-favorites'><RecipeFavorites isPage={false} recipe={recipe} user={user}/></div>
         <Link className='card-link' to={`/~recipes/${recipe.id}`}>
           <div>
             <span className='card-title'>{recipe.name} </span><br/>
