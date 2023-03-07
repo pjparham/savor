@@ -32,6 +32,7 @@ export default function Comment({ comment, user, handleDelete }) {
         setEditing(false)
       })
     }
+    
     if(editing){
       return (
         <div className='comment-container'>

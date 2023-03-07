@@ -105,86 +105,94 @@ function RecipeForm() {
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <label>
-        Name:
-        <input type="text" value={name} onChange={handleNameChange} />
-      </label>
-      <br />
-      <label>
-        Category:
-        <select value={category} onChange={handleCategoryChange}>
-          <option value="">Select a category</option>
-          <option value="dessert">Dessert</option>
-          <option value="appetizer">Appetizer</option>
-          <option value="main course">Main Course</option>
-          <option value="soup">Soup</option>
-          <option value="salad">Salad</option>
-          <option value="side">Side</option>
-          <option value="other">Other</option>
-        </select>
-      </label>
-      <br />
-      <label>
-        Ingredients:
-        <ul>
-          {ingredients.map((ingredient, index) => (
-            <li key={index}>
-                <label>
-                    Quantity
-                    <input
-                    type="text"
-                    value={ingredient.quantity}
-                    onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
-                    />
-                </label>
-                <label>
-                    Unit
-                    <input
-                    type="text"
-                    value={ingredient.unit}
-                    onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
-                    />
-                </label>
-                <label>
-                    Name
-                    <input
-                    type="text"
-                    value={ingredient.name}
-                    onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
-                    />
-                </label>
-                <button type="button" onClick={() => handleRemoveIngredient(index)}>Remove Ingredient</button>
-            </li>
-          ))}
-        </ul>
-        <button type="button" onClick={handleAddIngredient}>
-          Add Ingredient
-        </button>
-      </label>
-      <br />
-      <label>
-        Add image
-        <input type='file' onChange={handleImageChange}/>
-      </label>
-
-      <label>
-        Steps:
-        <ol>
-          {steps.map((step, index) => (
-            <li key={index}>
-              <textarea value={step} onChange={(e) => handleStepChange(index, e.target.value)} />
-              <button type="button" onClick={() => handleRemoveStep(index)}>Remove Step</button>
-            </li>
-          ))}
-        </ol>
-        <button type="button" onClick={handleAddStep}>
-          Add Step
-        </button>
-      </label>
-      <br />
-      <button type="submit">Submit</button>
-    </form>
+    <div className='form'>
+      <form onSubmit={handleSubmit}>
+        <div>
+          <label>
+          {/* <span className='form-label'>Name: {"   "} </span> */}
+            <input className='form-input name' placeholder='name'type="text" value={name} onChange={handleNameChange} />
+          </label>
+          {/* <br /> */}
+          <label>
+            {/* Category: */}
+            <select className='form-input select' value={category} onChange={handleCategoryChange}>
+              <option value="">Select a category</option>
+              <option value="dessert">Dessert</option>
+              <option value="appetizer">Appetizer</option>
+              <option value="main course">Main Course</option>
+              <option value="soup">Soup</option>
+              <option value="salad">Salad</option>
+              <option value="side">Side</option>
+              <option value="other">Other</option>
+            </select>
+          </label>
+        </div>
+        <br />
+        <label>
+          <h2>Add image</h2>
+          <input className='form-image' type='file' onChange={handleImageChange}/>
+        </label>
+        <label>
+          <h2>Ingredients:</h2>
+          <ul>
+            {ingredients.map((ingredient, index) => (
+              <li className='form-list' key={index}>
+                  <label>
+                      <input
+                      className='form-input ingredient'
+                      placeholder='quantity'
+                      type="text"
+                      value={ingredient.quantity}
+                      onChange={(e) => handleIngredientChange(index, 'quantity', e.target.value)}
+                      />
+                  </label>
+                  <label>
+                      <input
+                      className='form-input ingredient'
+                      placeholder='unit'
+                      type="text"
+                      value={ingredient.unit}
+                      onChange={(e) => handleIngredientChange(index, 'unit', e.target.value)}
+                      />
+                  </label>
+                  <label>
+                      <input
+                      className='form-input ingredient'
+                      placeholder='name'
+                      type="text"
+                      value={ingredient.name}
+                      onChange={(e) => handleIngredientChange(index, 'name', e.target.value)}
+                      />
+                  </label>
+                  <button type="button" onClick={() => handleRemoveIngredient(index)}><i className="fa-solid fa-x"></i></button>
+              </li>
+            ))}
+          </ul>
+          <div className='form-button ingredient' type="button" onClick={handleAddIngredient}>
+            New Ingredient
+          </div>
+        </label>
+        <br />
+       
+              <br/>
+        <label>
+          <h2>Steps:</h2>
+          <ol>
+            {steps.map((step, index) => (
+              <li key={index}>
+                <textarea className='form-textarea' value={step} onChange={(e) => handleStepChange(index, e.target.value)} />
+                <button type="button" onClick={() => handleRemoveStep(index)}><i className="fa-solid fa-x ingredient-remove"></i></button>
+              </li>
+            ))}
+          </ol>
+          <div className='form-button' type="button" onClick={handleAddStep}>
+            Add Step
+          </div>
+        </label>
+        <br />
+        <button type="submit">Submit</button>
+      </form>
+    </div>
   );
 }
 

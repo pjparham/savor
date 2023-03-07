@@ -26,6 +26,7 @@ code {
   color: white;
   margin-bottom: -2px;
   padding-bottom: 0;
+  margin-left: 1rem;
 }
 
 
@@ -94,6 +95,7 @@ code {
   border: #e3e3e3;
 }
 
+
 .login-button-container {
   width: 250px;
   margin: auto;
@@ -138,6 +140,81 @@ code {
   background: white;
   /* border: 1px solid #5b787b; */
 }
+
+/* styling for form below */
+.form {
+  width: 600px;
+  margin: auto;
+  border-radius: 30px;
+  background: white;
+  padding: 20px;
+  margin-top: 1.5rem;
+  padding-bottom: 40px;
+  padding-top: 10px;
+}
+
+.form-label {
+  float: left;
+  margin-left: 20%;
+}
+
+.form-list {
+  list-style-type: none;
+}
+
+.form-input {
+  width: 220px;
+  padding: 8px;
+  border-top-left-radius: 28px;
+	border-bottom-left-radius: 28px;
+  border-top-right-radius: 28px;
+	border-bottom-right-radius: 28px;
+  /* border: grey; */
+  font-weight: 700;
+  margin-bottom: 1rem;
+  font-size: 20px;
+  padding-left: 20px;
+  background-color: #e3e3e3;
+  border: #e3e3e3;
+}
+
+.form-button {
+  width: 8rem;
+  background: #e3e3e3;
+  margin: auto;
+  padding: .8rem;
+  border-radius: 20px;
+  font-weight: 600;
+}
+
+.form-input.name{
+  margin-right: 10px;
+}
+.form-input.ingredient{
+  width: 80px;
+  padding-left: 10px;
+  margin-right: 25px;
+}
+
+.form-textarea{
+  width: 280px;
+  height: 2rem;
+  border: 2px solid #e3e3e3;
+  margin-top: 5px;
+  margin-right: 1rem;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+  'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+  sans-serif;
+}
+
+.ingredient-remove{
+  margin-top: -5px;
+}
+
+.form-image {
+  font-size: 20px;
+}
+/* styling for form above */
 
 /* styling for cards and container on homepage below */
 
