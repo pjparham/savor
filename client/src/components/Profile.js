@@ -25,15 +25,15 @@ export default function Profile({ user, recipes }) {
 
   return (
     <div>
-        <h1>{user.first_name} {user.last_name}</h1>
         <div className='profile-my-recipes-container'>
-          <div className='profile-my-recipes-title'>My Recipes</div>
+          <h1 className='profile-my-recipes-title'>My Recipes</h1>
           <RecipesContainer isHome={false} user={user} recipes={userRecipes}/>
         </div>
         <div className='profile-my-saves-container'>
-          <div className='profile-my-saves-title'>Saved Recipes</div>
+          <h1 className='profile-my-saves-title'>Saved Recipes</h1>
           <RecipesContainer isHome={false} user={user} recipes={savedRecipes}/>
         </div>
+        <h1>{user.first_name} {user.last_name}</h1>
         <div onClick={handleLogout} className='logout'>Logout</div>
     </div>
   )

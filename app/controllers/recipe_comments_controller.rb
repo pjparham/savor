@@ -14,4 +14,13 @@ class RecipeCommentsController < ApplicationController
         comment.destroy
         render json: recipe
     end
+
+    def update
+        user = User.find(session[:user_id])
+        recipe = Recipe.find(params[:recipe_id])
+        comment = recipe.recipe_comments.find(params[:id])
+        comment.update(comment: params[:comment])
+        render json: recipe
+    end
+
 end
