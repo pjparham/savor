@@ -1,11 +1,12 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom'
-import { recipeAdded } from '../features/recipes/recipesSlice';
+import { recipeAdded, recipeUpdated } from '../features/recipes/recipesSlice';
 import { useDispatch } from "react-redux"
 
-function RecipeForm() {
+function RecipeForm({ editRecipe, setEdit }) {
   const dispatch = useDispatch()
   const navigate = useNavigate()
+
 
   const [name, setName] = useState('');
   const [category, setCategory] = useState('');
@@ -13,6 +14,14 @@ function RecipeForm() {
   const [steps, setSteps] = useState(['']);
   const [errors, setErrors] = useState([])
   const [image, setImage] = useState([])
+  useEffect(() => {
+    if (editRecipe) {
+      setName(editRecipe.name);
+      setCategory(editRecipe.category);
+      setIngredients(editRecipe.ingredients);
+      setSteps(editRecipe.recipe_steps.map(step => step.instruction));
+    }
+  }, [editRecipe]);
 
   const handleNameChange = (e) => {
     setName(e.target.value);
@@ -84,24 +93,45 @@ function RecipeForm() {
       formData.append(`recipe_steps_attributes[${index}][value]`, step.value);
       formData.append(`recipe_steps_attributes[${index}][instruction]`, step.instruction);
     })
-
-    fetch(`/recipes`, {
-      method: "POST",
-      body: formData
-    })
-    .then((r) => {
-      if(r.ok){
-        r.json()
-        .then((newRecipe) => dispatch(recipeAdded(newRecipe)))
-        setName('')
-        setCategory('')
-        setIngredients([{ quantity: '', unit: '', name: '' }])
-        setSteps([''])
-        navigate('/')
-      } else{
-        r.json().then(e => setErrors(e.errors))
-      }
-    }); // or dispatch an action to send the recipe data to your server or store
+    if(setEdit === null){
+      fetch(`/recipes`, {
+        method: "POST",
+        body: formData
+      })
+      .then((r) => {
+        if(r.ok){
+          r.json()
+          .then((newRecipe) => dispatch(recipeAdded(newRecipe)))
+          setName('')
+          setCategory('')
+          setIngredients([{ quantity: '', unit: '', name: '' }])
+          setSteps([''])
+          navigate('/')
+        } else{
+          r.json().then(e => setErrors(e.errors))
+        }
+      });
+    }
+    else{
+      fetch(`/recipes/${editRecipe.id}`, {
+        method: "PATCH",
+        body: formData
+      })
+      .then((r) =>{
+        if(r.ok){
+          r.json()
+          .then((updatedRecipe) => dispatch(recipeUpdated(updatedRecipe)))
+          setName('')
+          setCategory('')
+          setIngredients([{ quantity: '', unit: '', name: '' }])
+          setSteps([''])
+          setEdit(false)
+        } else {
+          r.json().then(e => setErrors(e.errors))
+        }
+      })
+    }
+     // or dispatch an action to send the recipe data to your server or store
   };
 
   return (
@@ -128,10 +158,10 @@ function RecipeForm() {
           </label>
         </div>
         <br />
-        <label>
+     {editRecipe ? null :  <label>
           <h2>Add image</h2>
           <input className='form-image' type='file' onChange={handleImageChange}/>
-        </label>
+        </label>}
         <label>
           <h2>Ingredients:</h2>
           <ul>
@@ -157,7 +187,7 @@ function RecipeForm() {
                   </label>
                   <label>
                       <input
-                      className='form-input ingredient'
+                      className='form-input ingredient name'
                       placeholder='name'
                       type="text"
                       value={ingredient.name}

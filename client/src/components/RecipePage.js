@@ -1,9 +1,11 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { useParams } from 'react-router-dom'
 import RecipeFavorites from './RecipeFavorites'
 import Comments from './Comments'
+import RecipeForm from './RecipeForm'
 
 export default function RecipePage({ recipes, user, handleDelete }) {
+    const [edit, setEdit] = useState(false)
     const params = useParams()
 
     let recipe = recipes.find(recipe => recipe.id === parseInt(params.id))
@@ -28,6 +30,7 @@ export default function RecipePage({ recipes, user, handleDelete }) {
     function handleDeleteClick(){
       handleDelete(recipe)
     }
+    console.log(recipe)
 
     if (!recipe){
       return (
@@ -36,12 +39,28 @@ export default function RecipePage({ recipes, user, handleDelete }) {
         </div>
       )
     }
+    if (edit){
+      return (
+        <>
+            <div onClick={() => setEdit(false)}>Stop editing</div>
+            <RecipeForm setEdit={setEdit} editRecipe={recipe}/>
+        </>
+    
+      )
+    }
   return (
     <div className='recipe-page'>
       <div className='recipe-page-top'>
         <div className='recipe-page-top-left'>
           <div className='recipe-page-title'>{recipe.name}  </div>
-          <div className='recipe-page-author'>By: {recipe.user.username}{isCurrentUser ? <span  className='recipe-page-delete' onClick={handleDeleteClick}> || <u>Delete Recipe</u></span> : null}</div>
+          <div className='recipe-page-author'>By: {recipe.user.username}{isCurrentUser ? 
+          <>
+            <span  className='recipe-page-delete' onClick={handleDeleteClick}>
+              || <u>Delete Recipe</u>
+            </span>
+            <span className='recipe-page-edit' onClick={() => setEdit(true)}>Edit recipe</span>
+          </> 
+          : null}</div>
           {recipe.image ? <img src={recipe?.image} alt='recipe'/> : null}
         </div>
         <div className='recipe-page-top-right'>

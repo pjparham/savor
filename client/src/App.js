@@ -60,7 +60,7 @@ function App() {
         <Route exact path='/' element={<RecipesContainer isHome={true} user={user} recipes={recipes}/>}/>
         <Route exact path='/test' element={<Test/>}/>
         <Route exact path='/profile' element={<Profile recipes={recipes} user={user}/>}/>
-        <Route exact path='/~recipes/new' element={<RecipeForm/>}/>
+        <Route exact path='/~recipes/new' element={<RecipeForm setEdit={null} editRecipe={null}/>}/>
         <Route path='/~recipes/:id' element={<RecipePage handleDelete={handleDelete} user={user} recipes={recipes}/>}/>
       </Routes>
     </div>

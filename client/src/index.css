@@ -196,6 +196,10 @@ code {
   margin-right: 25px;
 }
 
+.form-input.ingredient.name{
+  width: 120px;
+}
+
 .form-textarea{
   width: 280px;
   height: 2rem;
