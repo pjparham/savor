@@ -141,6 +141,27 @@ code {
   /* border: 1px solid #5b787b; */
 }
 
+.logout {
+  margin: auto;
+  font-size: 23px;
+  background: #ebebeb;
+  height: 35px;
+  width: 8rem;
+  border-radius: 17px;
+  font-weight: 200;
+  color: black;
+  margin-bottom: 1rem;
+  transition: all 0.2s ease-in-out;
+  cursor: pointer;
+}
+
+.logout:hover {
+  transition: all 0.2s ease-in-out;
+  color: white;
+  background: #1f1f1f;
+  font-weight: 600;
+}
+
 /* styling for form below */
 .form {
   width: 600px;
@@ -219,6 +240,28 @@ code {
   font-size: 20px;
 }
 /* styling for form above */
+
+/* styling for comments below */
+.comment-container {
+  width: 400px;
+  background: #e3e3e3;
+  margin: auto;
+  margin-bottom: 12px;
+  border-radius: 15px;
+  padding: 3px;
+  text-align: left;
+  height: 4rem;
+}
+
+.comment-container div {
+  margin-left: 1rem;
+}
+
+.comment-engage {
+  float: right;
+  margin-right: .5rem;
+}
+/* styling for comments above */
 
 /* styling for cards and container on homepage below */
 
@@ -324,8 +367,10 @@ code {
 .card-image-icon {
   margin-top: .5rem;
   font-size: 9rem;
-  color: darkslategray;
+  color: #1f1f1f;
 }
+
+
 
 /* styling for cards and container on homepage above */
 /* styling for recipe page below*/
@@ -342,16 +387,19 @@ code {
 .recipe-page-title{
   font-size: 32px;
   font-weight: 600;
+  padding-top: 1rem;
 }
 
 .recipe-page-author{
   font-size: 14px;
+  padding: 10px;
 }
 
 .recipe-page-top-right {
   width: 50%;
   float: right;
   text-align: left;
+  padding-top: 1rem;
 }
 
 .recipe-ingredients-title {
@@ -371,6 +419,11 @@ code {
 .recipe-steps-container li {
   margin-top: 1rem;
 }
+
+.recipe-page-image {
+  width: 430px;
+}
+
 
 
 
@@ -401,11 +454,64 @@ code {
     font-size: 40px;
   }
 
-  /* .nav-logo {
-    height: 3.2rem;
-    margin-right: .2rem;
-  } */
+  .recipe-page {
+    padding-left: .5rem;
+    text-align: center;
+    display: inline-block;
+  }
 
+
+  .recipe-page div {
+    width: 100%;
+  }
+
+  .recipe-page img {
+    width: 360px;
+  }
+
+  .comment-engage {
+    width: 5rem;
+    float: right;
+    text-align: right;
+    margin-right: 1.5rem;
+  }
+
+
+  .comment-container {
+    width: 340px;
+    text-align: left;
+  }
+
+  .form-input {
+    width: 180px;
+    font-size: 16px;
+  }
+
+  .form-textarea{
+    width: 180px;
+    height: 2rem;
+    border: 2px solid #e3e3e3;
+    margin-top: 5px;
+    margin-right: 1rem;
+    margin-left: 0px;
+  }
+
+
+  .form{
+    width: 380px;
+    padding: 0px;
+  }
+
+  .recipe-card {
+    padding-bottom: 2.5rem;
+  }
+
+  .card-title {
+    font-size: 20px;
+  }
+  .card-ingredients {
+    display: none;
+  }
 
   .links {
     display: none;

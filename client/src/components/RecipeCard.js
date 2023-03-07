@@ -19,7 +19,7 @@ export default function RecipeCard({recipe, user, handleDelete}) {
       <div>
         {recipe.image ? 
         <img className='card-image' src={recipe?.image} alt='recipe'/> : 
-        <i className="fa-solid fa-bowl-food card-image-icon"></i>}
+        <i class="fa-solid fa-bowl-rice card-image-icon"></i>}
         </div>
       </div>
       <div className='card-right'>
@@ -29,7 +29,7 @@ export default function RecipeCard({recipe, user, handleDelete}) {
             <span className='card-title'>{recipe.name} </span><br/>
             <span className='card-author'>By {recipe.user.username}</span>
           </div>
-          <p>Ingredients: {ingredientsPreview}</p>
+          <p className='card-ingredients'>Ingredients: {ingredientsPreview}</p>
           <p>Total Steps: {recipe.recipe_steps.length}</p>
         </Link>
       </div>

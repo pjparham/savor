@@ -49,13 +49,15 @@ export default function Comment({ comment, user, handleDelete }) {
 
   return (
     <div className='comment-container'>
-        <div className='comment-username'>{comment.user.username}</div>
-        <div className='comment-text'>{comment.comment}</div>
+      <div className='comment-username'><b>{comment.user.username}</b></div>
         {isCurrentUser ? 
-          <>
-            <div onClick={onDelete} className='comment-delete'>Delete</div>
+          <div className='comment-engage'>
+            <div onClick={onDelete} className='comment-delete'><i className="fa-solid fa-trash-can"></i></div>
             <div onClick={() => setEditing(true)} className="review-delete"><i className="fa fa-pencil-square-o" aria-hidden="true"></i></div>
-          </> : null}
+          </div> : null}
+
+        <div className='comment-text'>{comment.comment}</div>
+      
     </div>
   )
 }

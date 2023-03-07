@@ -209,7 +209,7 @@ function RecipeForm({ editRecipe, setEdit }) {
           <h2>Steps:</h2>
           <ol>
             {steps.map((step, index) => (
-              <li key={index}>
+              <li className='form-step' key={index}>
                 <textarea className='form-textarea' value={step} onChange={(e) => handleStepChange(index, e.target.value)} />
                 <button type="button" onClick={() => handleRemoveStep(index)}><i className="fa-solid fa-x ingredient-remove"></i></button>
               </li>
