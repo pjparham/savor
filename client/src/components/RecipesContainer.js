@@ -4,7 +4,7 @@ import { useDispatch } from "react-redux"
 import { recipeRemoved } from '../features/recipes/recipesSlice'
 import RecipeFilter from './RecipeFilter'
 
-export default function RecipesContainer({recipes, user}) {
+export default function RecipesContainer({recipes, user, isHome}) {
   const dispatch = useDispatch()
   const [category, setCategory] = useState('all')
   
@@ -55,7 +55,7 @@ export default function RecipesContainer({recipes, user}) {
     
   return (
     <>
-      <RecipeFilter handleFilter={handleFilter}/>
+      {isHome ? <RecipeFilter handleFilter={handleFilter}/> : null}
       <div className='recipes-container'>{displayRecipes}</div>
     </>
     

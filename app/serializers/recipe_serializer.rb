@@ -6,6 +6,7 @@ class RecipeSerializer < ActiveModel::Serializer
   has_many :recipe_steps
   has_many :favorites
   has_many :recipe_comments, serializer: RecipeCommetSerializer
+  has_many :favorited_users
 
   def image
     rails_blob_path(object.image, only_path: true) if object.image.attached?
