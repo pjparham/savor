@@ -25,6 +25,7 @@ export default function Comments({ recipe, user }) {
             if(r.ok){
                 r.json()
                 .then((updatedRecipe) => dispatch(recipeUpdated(updatedRecipe)))
+                setComment("")
             }
             else {r.json().then(e => setErrors(e.errors))}
         })
