@@ -6,6 +6,7 @@ import { recipeUpdated } from '../features/recipes/recipesSlice'
 export default function Comments({ recipe, user }) {
     const dispatch = useDispatch()
     const [comment, setComment] = useState("")
+    const [errors, setErrors] = useState([])
 
     function onSubmit(e){
         e.preventDefault()
@@ -20,9 +21,13 @@ export default function Comments({ recipe, user }) {
             },
             body: JSON.stringify(newComment)
         })
-        .then((r) => r.json())
-        .then((updatedRecipe) => dispatch(recipeUpdated(updatedRecipe)))
-        setComment("")
+        .then(r => {
+            if(r.ok){
+                r.json()
+                .then((updatedRecipe) => dispatch(recipeUpdated(updatedRecipe)))
+            }
+            else {r.json().then(e => setErrors(e.errors))}
+        })
     }
 
     function handleDelete(deletedComment){
@@ -46,13 +51,15 @@ export default function Comments({ recipe, user }) {
 
   return (
     <div className="comments-container">
-    <h1 className="comments-title">Comments</h1>
-    {displayComments}
-    <h1>Write a comment:</h1>
-    <form onSubmit={onSubmit}>
-        <textarea value={comment} onChange={e => setComment(e.target.value)} className="comment-input" type="textarea" id="review" name="review"></textarea><br></br>
-        <div onClick={onSubmit} className='comment-submit-button'>Submit</div>
-    </form>
-</div>
+        <h1 className="comments-title">Comments</h1>
+        {displayComments}
+        <h1>Write a comment:</h1>
+        {errors.length > 0 ? <div className='errors-container'>{errors}</div> : null}
+        <form onSubmit={onSubmit}>
+            <textarea value={comment} onChange={e => setComment(e.target.value)} className="comment-input" type="textarea" id="review" name="review"></textarea><br></br>
+            <div onClick={onSubmit} className='comment-submit-button'>Submit</div>
+        </form>
+
+    </div>
   )
 }

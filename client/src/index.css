@@ -250,7 +250,7 @@ code {
   border-radius: 15px;
   padding: 3px;
   text-align: left;
-  height: 4rem;
+  height: auto;
 }
 
 .comment-container div {
@@ -258,8 +258,17 @@ code {
 }
 
 .comment-engage {
+  width: 3rem;
   float: right;
   margin-right: .5rem;
+}
+
+.errors-container {
+  margin: auto;
+  color: red;
+  font-weight: 500;
+  padding: 1rem;
+  margin-bottom: 1rem;
 }
 /* styling for comments above */
 
@@ -444,16 +453,7 @@ code {
   font-size: 20px;
 }
 
-@media screen and (max-width: 620px){
-
-  .navbar{
-    height: 50px;
-  }
-
-  .nav-title {
-    font-size: 40px;
-  }
-
+@media screen and (max-width: 1000px){
   .recipe-page {
     padding-left: .5rem;
     text-align: center;
@@ -464,6 +464,20 @@ code {
   .recipe-page div {
     width: 100%;
   }
+
+}
+
+@media screen and (max-width: 620px){
+
+  .navbar{
+    height: 50px;
+  }
+
+  .nav-title {
+    font-size: 40px;
+  }
+
+ 
 
   .recipe-page img {
     width: 360px;
@@ -480,6 +494,7 @@ code {
   .comment-container {
     width: 340px;
     text-align: left;
+ 
   }
 
   .form-input {

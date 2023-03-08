@@ -12,26 +12,31 @@ export default function Comment({ comment, user, handleDelete }) {
     }
 
 
-
-    function handleUpdate(e){
-      e.preventDefault()
-      let updatedComment = {
-        "comment": body,
-        "recipe_id": comment.recipe_id,
-      }
-      fetch(`/recipe_comments/${comment.id}`, {
-        method: "PATCH",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(updatedComment)
-      })
-      .then((r) => r.json())
-      .then((updatedRecipe) => {
-        dispatch(recipeUpdated(updatedRecipe))
-        setEditing(false)
-      })
+  function handleUpdate(e){
+    e.preventDefault()
+    let updatedComment = {
+      "comment": body,
+      "recipe_id": comment.recipe_id,
     }
+    fetch(`/recipe_comments/${comment.id}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(updatedComment)
+    })
+    .then(r => {
+      if(r.ok){
+        r.json()
+        .then((updatedRecipe) => {
+          dispatch(recipeUpdated(updatedRecipe))
+          setEditing(false)
+        })
+      } else {
+        r.json.then(e => console.log(e))
+      }
+    })
+  }
     
     if(editing){
       return (

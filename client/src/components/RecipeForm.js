@@ -71,6 +71,9 @@ function RecipeForm({ editRecipe, setEdit }) {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if(category === ''){
+      setCategory('other')
+    }
     const recipe = {
       name,
       category,
@@ -138,11 +141,11 @@ function RecipeForm({ editRecipe, setEdit }) {
     <div className='form'>
       <form onSubmit={handleSubmit}>
         <div>
+        {errors.length > 0 ? <div className='errors-container'>{errors.map((e) => <li key={e}>{e}</li>)}</div> : null}
           <label>
           {/* <span className='form-label'>Name: {"   "} </span> */}
             <input className='form-input name' placeholder='name'type="text" value={name} onChange={handleNameChange} />
           </label>
-          {/* <br /> */}
           <label>
             {/* Category: */}
             <select className='form-input select' value={category} onChange={handleCategoryChange}>

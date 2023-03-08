@@ -9,4 +9,6 @@ class Recipe < ApplicationRecord
     accepts_nested_attributes_for :ingredients
     accepts_nested_attributes_for :recipe_steps
     has_one_attached :image, :dependent => :destroy
+
+    validates :name, presence: true
 end
