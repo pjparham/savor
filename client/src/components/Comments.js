@@ -58,7 +58,7 @@ export default function Comments({ recipe, user }) {
         {errors.length > 0 ? <div className='errors-container'>{errors}</div> : null}
         <form onSubmit={onSubmit}>
             <textarea value={comment} onChange={e => setComment(e.target.value)} className="comment-input" type="textarea" id="review" name="review"></textarea><br></br>
-            <div onClick={onSubmit} className='comment-submit-button'>Submit</div>
+            <div onClick={onSubmit} className='recipe-page-engage submit'>Submit</div>
         </form>
 
     </div>

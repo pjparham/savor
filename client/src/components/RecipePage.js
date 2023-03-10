@@ -59,9 +59,9 @@ export default function RecipePage({ recipes, user, handleDelete }) {
           <div className='recipe-page-author'>By: {recipe.user.username} {isCurrentUser ? 
           <>
             <span  className='recipe-page-delete' onClick={handleDeleteClick}>
-              || <u>Delete Recipe</u>
+              <div className='recipe-page-engage'>Delete Recipe</div>
             </span>
-            <span className='recipe-page-edit' onClick={() => setEdit(true)}> Edit recipe</span>
+            <span className='recipe-page-edit' onClick={() => setEdit(true)}> <div className='recipe-page-engage'>Edit recipe</div></span>
           </> 
           : null}</div>
           {recipe.image ? <img className='recipe-page-image'src={recipe?.image} alt='recipe'/> : null}

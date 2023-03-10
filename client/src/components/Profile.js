@@ -25,6 +25,8 @@ export default function Profile({ user, recipes }) {
 
   return (
     <div>
+       <div className='profile-user-container'><h1>{user.first_name} {user.last_name}</h1><div onClick={handleLogout} className='logout'>Logout</div></div> 
+ 
         <div className='profile-my-recipes-container'>
           <h1 className='profile-my-recipes-title'>My Recipes</h1>
           <RecipesContainer isHome={false} user={user} recipes={userRecipes}/>
@@ -33,8 +35,7 @@ export default function Profile({ user, recipes }) {
           <h1 className='profile-my-saves-title'>Saved Recipes</h1>
           <RecipesContainer isHome={false} user={user} recipes={savedRecipes}/>
         </div>
-        <h1>{user.first_name} {user.last_name}</h1>
-        <div onClick={handleLogout} className='logout'>Logout</div>
+      
     </div>
   )
 }
